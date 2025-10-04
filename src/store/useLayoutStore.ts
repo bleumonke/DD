@@ -1,7 +1,21 @@
 import { create } from 'zustand';
 import type { Layout } from '../types';
 
-export const LAYOUTS_MOCK_DATA: readonly Layout[] = [
+import { PLOTS_MOCK_DATA } from './usePlotStore'; // Import the plot data
+
+// 🔁 Helper: Get plot stats per layout
+const getStatsForLayout = (layoutId: string) => {
+  const plots = PLOTS_MOCK_DATA.filter((p) => p.layout === layoutId);
+  return {
+    numberOfPlots: plots.length,
+    numberOfSoldPlots: plots.filter((p) => p.status === 'Sold').length,
+    numberOfAvailablePlots: plots.filter((p) => p.status === 'Available').length,
+    numberOfRegisteredPlots: plots.filter((p) => p.status === 'Registered').length,
+  };
+};
+
+// 🧪 Raw layouts
+const RAW_LAYOUTS: Layout[] = [
   {
     id: '9e5e91aa-9598-4998-95f9-4607613b148d',
     name: 'Green Acres',
@@ -12,10 +26,8 @@ export const LAYOUTS_MOCK_DATA: readonly Layout[] = [
     state: 'CA',
     zip: '12345',
     country: 'USA',
-    numberOfPlots: 100,
-    numberOfSoldPlots: 60,
-    numberOfAvailablePlots: 30,
-    numberOfReservedPlots: 10,
+    latitude: 37.1234,
+    longitude: -119.1234,
   },
   {
     id: 'ad18cc61-c43b-44d9-9d40-26f249267bbf',
@@ -27,10 +39,8 @@ export const LAYOUTS_MOCK_DATA: readonly Layout[] = [
     state: 'TX',
     zip: '23456',
     country: 'USA',
-    numberOfPlots: 150,
-    numberOfSoldPlots: 90,
-    numberOfAvailablePlots: 40,
-    numberOfReservedPlots: 20,
+    latitude: 31.1234,
+    longitude: -97.1234,
   },
   {
     id: '3e7f4c01-f24e-42c8-8ca1-b7d619427bb3',
@@ -42,10 +52,8 @@ export const LAYOUTS_MOCK_DATA: readonly Layout[] = [
     state: 'NY',
     zip: '34567',
     country: 'USA',
-    numberOfPlots: 200,
-    numberOfSoldPlots: 120,
-    numberOfAvailablePlots: 50,
-    numberOfReservedPlots: 30,
+    latitude: 40.7128,
+    longitude: -74.006,
   },
   {
     id: '4a8f4c01-f24e-42c8-8ca1-b7d619427bb4',
@@ -57,10 +65,8 @@ export const LAYOUTS_MOCK_DATA: readonly Layout[] = [
     state: 'FL',
     zip: '45678',
     country: 'USA',
-    numberOfPlots: 120,
-    numberOfSoldPlots: 70,
-    numberOfAvailablePlots: 40,
-    numberOfReservedPlots: 10,
+    latitude: 27.1234,
+    longitude: -81.1234,
   },
   {
     id: '5b9f4c01-f24e-42c8-8ca1-b7d619427bb5',
@@ -72,12 +78,19 @@ export const LAYOUTS_MOCK_DATA: readonly Layout[] = [
     state: 'IL',
     zip: '56789',
     country: 'USA',
-    numberOfPlots: 160,
-    numberOfSoldPlots: 100,
-    numberOfAvailablePlots: 50,
-    numberOfReservedPlots: 10,
+    latitude: 40.1234,
+    longitude: -88.1234,
   },
 ];
+
+// ✅ Enriched mock data
+export const LAYOUTS_MOCK_DATA: readonly Layout[] = RAW_LAYOUTS.map((layout) => {
+  const stats = getStatsForLayout(layout.id);
+  return {
+    ...layout,
+    ...stats,
+  };
+});
 
 type LayoutState = {
   layouts: Layout[];

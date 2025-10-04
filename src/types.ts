@@ -9,6 +9,8 @@ export interface Plot {
   customer?: string;
   crop?: string;
   layout?: string;
+  latitude?: number;
+  longitude?: number;
 }
 
 export interface Customer {
@@ -34,10 +36,12 @@ export interface Layout {
   state: string;
   zip: string;
   country: string;
-  numberOfPlots: number;
-  numberOfSoldPlots: number;
-  numberOfAvailablePlots: number;
-  numberOfReservedPlots: number;
+  latitude?: number;
+  longitude?: number;
+  numberOfPlots?: number;
+  numberOfSoldPlots?: number;
+  numberOfAvailablePlots?: number;
+  numberOfRegisteredPlots?: number;
 }
 
 export interface Price {

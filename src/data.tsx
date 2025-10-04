@@ -10,7 +10,7 @@ import { useLayoutStore } from './store/useLayoutStore';
 import { useCustomerStore } from "./store/useCustomerStore";
 
 export const NAVIGATION_LINKS = [
-  { key: 'dashboard', label: 'Dashboard', icon: <SlGrid />, path: '/' },
+  // { key: 'dashboard', label: 'Dashboard', icon: <SlGrid />, path: '/' },
   { key: 'layouts', label: 'Layouts', icon: <IoMapSharp />, path: '/layouts' },
   { key: 'pricing', label: 'Pricing', icon: <TbMoneybag />, path: '/pricing' },
   { key: 'coupons', label: 'Coupons', icon: <IoPricetagOutline />, path: '/coupons' },
@@ -111,7 +111,7 @@ export const LAYOUTS_TABLE_HEADERS: ColumnDef<any>[] = [
   { accessorKey: 'numberOfPlots', header: 'Total Plots', size: 20, enableSorting: true },
   { accessorKey: 'numberOfSoldPlots', header: 'Sold Plots', size: 20, enableSorting: true },
   { accessorKey: 'numberOfAvailablePlots', header: 'Available Plots', size: 20, enableSorting: true },
-  { accessorKey: 'numberOfReservedPlots', header: 'Reserved Plots', size: 20, enableSorting: true },
+  { accessorKey: 'numberOfRegisteredPlots', header: 'Registered Plots', size: 20, enableSorting: true },
   {
     id: 'delete',
     header: '',
@@ -176,12 +176,3 @@ export const COUPON_TABLE_HEADERS: ColumnDef<any>[] = [
   }, enableSorting: false},
   { id: 'delete', header: '', cell: () => null, meta: { className: 'fixed-width-delete-column' }, enableSorting: false, enableColumnFilter: false },
 ];
-
-
-
-export const DASHBOARD_STATS = {
-  plotsSold: 45,
-  plotsAvailable: 75,
-  plotsRegistered: 30,
-  totalCustomers: 120,
-}

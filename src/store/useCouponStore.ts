@@ -12,6 +12,7 @@ export const COUPON_MOCK_DATA: Coupon[] = [
 type CouponState = {
   coupons: Coupon[];
   getCouponById: (id: string) => Coupon | undefined;
+  getCouponsStats: () => { total: number; unexpired: number; expired: number, mostUsed: string, leastUsed: string };
   addCoupon: (coupon: Coupon) => void;
   updateCoupon: (id: string, updatedCoupon: Partial<Coupon>) => void;
   deleteCoupon: (id: string) => void;
@@ -22,6 +23,25 @@ export const useCouponStore = create<CouponState>((set, get) => ({
   coupons: [...COUPON_MOCK_DATA],
 
   getCouponById: (id) => get().coupons.find((c) => c.id === id),
+
+  getCouponsStats: () => {
+    const coupons = get().coupons;
+    const total = coupons.length;
+    const currentDate = new Date();
+    const unexpired = coupons.filter(c => !c.validTo || new Date(c.validTo) >= currentDate).length;
+    const expired = total - unexpired;
+
+    let mostUsed = '';
+    let leastUsed = '';
+
+    if (coupons.length > 0) {
+      const sortedByUsage = [...coupons].sort((a, b) => b.usedCount - a.usedCount);
+      mostUsed = sortedByUsage[0].code;
+      leastUsed = sortedByUsage[sortedByUsage.length - 1].code;
+    }
+
+    return { total, unexpired, expired, mostUsed, leastUsed };
+  },
 
   addCoupon: (coupon) =>
     set((state) => ({

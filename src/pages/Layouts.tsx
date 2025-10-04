@@ -10,7 +10,7 @@ import { DashboardCard } from '../components/export'
 import { MdOutlineSell } from "react-icons/md";
 import { SlDirection } from "react-icons/sl";
 import { CiCircleCheck } from "react-icons/ci";
-import { PiUsersThree } from "react-icons/pi";
+import { HiOutlineSquare3Stack3D } from "react-icons/hi2";
 
 import type { DrawerRef } from '../components/Drawer'
 import type { ColumnDef } from '@tanstack/react-table'
@@ -54,7 +54,7 @@ export default function Layouts() {
       numberOfPlots: 0,
       numberOfSoldPlots: 0,
       numberOfAvailablePlots: 0,
-      numberOfReservedPlots: 0,
+      numberOfRegisteredPlots: 0,
     });
     setIsAddMode(true);
     setDrawerOpen(true);
@@ -72,27 +72,27 @@ export default function Layouts() {
   };
 
   return (
-    <div style={{ padding: '1%' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', marginBottom: '20px' }}>
-        <DashboardCard
-          title="Total Layouts"
-          value={layouts.length}
-          icon={<MdOutlineSell />}
-        />
+    <div style={{ padding: '1rem', marginTop: '5%' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center', alignItems: 'center', flexGrow: 1 }}>
         <DashboardCard
           title="Total Plots"
-          value={layouts.reduce((acc, layout) => acc + layout.numberOfPlots, 0)}
-          icon={<SlDirection />}
+          value={layouts.reduce((acc, layout) => acc + (layout.numberOfPlots ?? 0), 0)}
+          icon={<HiOutlineSquare3Stack3D />}
         />
         <DashboardCard
           title="Sold Plots"
-          value={layouts.reduce((acc, layout) => acc + layout.numberOfSoldPlots, 0)}
-          icon={<CiCircleCheck />}
+          value={layouts.reduce((acc, layout) => acc + (layout.numberOfSoldPlots ?? 0), 0)}
+          icon={<MdOutlineSell />}
         />
         <DashboardCard
           title="Available Plots"
-          value={layouts.reduce((acc, layout) => acc + layout.numberOfAvailablePlots, 0)}
-          icon={<PiUsersThree />}
+          value={layouts.reduce((acc, layout) => acc + (layout.numberOfAvailablePlots ?? 0), 0)}
+          icon={<SlDirection />}
+        />
+        <DashboardCard
+          title="Registered Plots"
+          value={layouts.reduce((acc, layout) => acc + (layout.numberOfRegisteredPlots ?? 0), 0)}
+          icon={<CiCircleCheck />}
         />
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>

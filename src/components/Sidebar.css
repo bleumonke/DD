@@ -26,13 +26,32 @@
   user-select: none;
 }
 
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  margin: 5rem;
+}
+
+.logo {
+  width: auto;
+  height: 80px;
+  object-fit: contain;
+}
+
 .sidebar-content {
   flex: 1;
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   overflow-y: auto;
+}
+
+.sidebar.sidebar.collapsed .sidebar-content {
+  justify-content: center;
 }
 
 .nav-links {

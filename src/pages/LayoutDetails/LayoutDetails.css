@@ -60,14 +60,41 @@
 .layout-details-form-right {
   flex: 2;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: start;
   align-items: center;
   min-height: 300px;
   border: 1px dashed #ccc;
   border-radius: 8px;
-  background-color: #fafafa;
   color: gray;
   padding: 1rem;
+}
+
+.latlng-inputs {
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+}
+
+.latlng-inputs label {
+  flex: 1;
+  font-weight: 500;
+  color: gray;
+  font-size: small;
+}
+
+.latlng-inputs input {
+  width: 100%;
+  padding: 0.3rem;
+  margin-top: 0.2rem;
+  font-size: small;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  height: 30px;
 }
 
 /* Form Group */

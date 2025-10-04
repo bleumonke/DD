@@ -10,6 +10,7 @@ import { usePlotStore } from '../../store/usePlotStore';
 import { usePricingStore } from '../../store/usePricingStore';
 
 import type { Plot } from '../../types';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
 export default function PlotDetails() {
   const { layoutId, plotId } = useParams<{ layoutId: string; plotId?: string }>();
@@ -41,6 +42,8 @@ export default function PlotDetails() {
     customer: '',
     crop: '',
     layout: layoutId || '',
+    latitude: 0,
+    longitude: 0,
   });
 
   const [availableCrops, setAvailableCrops] = useState<{ value: string; label: string }[]>([]);
@@ -76,7 +79,7 @@ export default function PlotDetails() {
   }, [existingPlot]);
 
   // Handle form input changes
-  const handleChange = (field: keyof Plot, value: string) => {
+  const handleChange = (field: keyof Plot, value: string | number) => {
     setPlot((prev) => ({
       ...prev,
       [field]: value,
@@ -189,7 +192,59 @@ export default function PlotDetails() {
         </div>
 
         <div className="plot-details-info-right">
-          <p>🗺️ Map or layout preview will go here.</p>
+          <div className="latlng-inputs">
+            <label>
+              Latitude:
+              <input
+                type="number"
+                step="0.000001"
+                value={plot.latitude}
+                onChange={(e) => {
+                  handleChange('latitude', parseFloat(e.target.value));
+                }}
+                placeholder="Enter latitude"
+                min={-90}
+                max={90}
+              />
+            </label>
+
+            <label>
+              Longitude:
+              <input
+                type="number"
+                step="0.000001"
+                value={plot.longitude}
+                onChange={(e) => {
+                  handleChange('longitude', parseFloat(e.target.value));
+                }}
+                placeholder="Enter longitude"
+                min={-180}
+                max={180}
+              />
+            </label>
+          </div>
+            {plot.latitude && plot.longitude ? (
+              <MapContainer
+                center={[plot.latitude, plot.longitude]}
+                zoom={20}
+                style={{ height: '100%', width: '100%' }}
+                scrollWheelZoom={true}
+              >
+                <TileLayer
+                  url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                  attribution='Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+                />
+                <Marker position={[plot.latitude, plot.longitude]}>
+                  <Popup>
+                    Position: {plot.latitude.toFixed(5)}, {plot.longitude.toFixed(5)}
+                  </Popup>
+                </Marker>
+              </MapContainer>
+            ) : (
+              <p style={{ color: 'gray', textAlign: 'center', paddingTop: '1rem' }}>
+                Please enter valid latitude and longitude to display the map.
+              </p>
+            )}
         </div>
       </div>
 

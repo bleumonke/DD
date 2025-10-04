@@ -18,7 +18,7 @@ function Layout() {
       <Sidebar links={NAVIGATION_LINKS} username="John Doe" />
       <div className="section">
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          {/* <Route path="/" element={<Dashboard />} /> */}
           <Route path="/customers" element={<Customers />} />
           <Route path="/layouts" element={<Layouts />} />
           <Route path="/layouts/:layoutId" element={<LayoutDetails />} />
@@ -26,7 +26,7 @@ function Layout() {
           <Route path="/layouts/:layoutId/plots/new" element={<PlotDetails />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/coupons" element={<Coupons />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<Navigate to="/layouts" replace />} />
         </Routes>
       </div>
     </div>

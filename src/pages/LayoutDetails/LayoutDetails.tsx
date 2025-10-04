@@ -11,6 +11,7 @@ import type { ColumnDef } from '@tanstack/react-table';
 import type { Layout, Price } from '../../types';
 import PricingForm from '../../components/forms/pricing/PricingForm';
 import type { DrawerRef } from '../../components/Drawer';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
 export default function LayoutDetails() {
   const { layoutId } = useParams<{ layoutId: string }>();
@@ -19,6 +20,9 @@ export default function LayoutDetails() {
   const getLayoutById = useLayoutStore((state) => state.getLayoutById);
   const updateLayout = useLayoutStore((state) => state.updateLayout);
   const getPlotsByLayoutId = usePlotStore((state) => state.getPlotsByLayoutId);
+  const getPlotsStatsByLayoutId = usePlotStore((state) => state.getPlotsStatsByLayoutId);
+
+  const plotStats = getPlotsStatsByLayoutId(layoutId ?? '');
 
   const allPrices = usePricingStore((state) => state.prices);
   const addPricing = usePricingStore((state) => state.addPrice);
@@ -66,7 +70,7 @@ export default function LayoutDetails() {
       maxSize: 0,
       crop: '',
       validFrom: '',
-      validTo: ''
+      validTo: '',
     });
     setIsAddMode(true);
     setDrawerOpen(true);
@@ -107,6 +111,7 @@ export default function LayoutDetails() {
     handleDrawerClose();
   };
 
+
   if (!layout || !editableLayout) {
     return (
       <div className="layout-details-container">
@@ -135,10 +140,10 @@ export default function LayoutDetails() {
 
       {/* Stats */}
       <div className="layout-stats">
-        <DashboardCard title="Total Plots" value={editableLayout.numberOfPlots ?? 0} />
-        <DashboardCard title="Sold Plots" value={editableLayout.numberOfSoldPlots ?? 0} />
-        <DashboardCard title="Available Plots" value={editableLayout.numberOfAvailablePlots ?? 0} />
-        <DashboardCard title="Registered Plots" value={editableLayout.numberOfReservedPlots ?? 0} />
+        <DashboardCard title="Total Plots" value={plotStats.total ?? 0} />
+        <DashboardCard title="Sold Plots" value={plotStats.sold ?? 0} />
+        <DashboardCard title="Available Plots" value={plotStats.available ?? 0} />
+        <DashboardCard title="Registered Plots" value={plotStats.registered ?? 0} />
       </div>
 
       {/* Form */}
@@ -169,8 +174,62 @@ export default function LayoutDetails() {
           ))}
         </div>
         <div className="layout-details-form-right">
-          <p>🗺️ Map or layout preview will go here.</p>
+          <div className="latlng-inputs">
+            <label>
+              Latitude:
+              <input
+                type="number"
+                step="0.000001"
+                value={editableLayout.latitude}
+                onChange={(e) => {
+                  handleChange('latitude', parseFloat(e.target.value));
+                }}
+                placeholder="Enter latitude"
+                min={-90}
+                max={90}
+              />
+            </label>
+
+            <label>
+              Longitude:
+              <input
+                type="number"
+                step="0.000001"
+                value={editableLayout.longitude}
+                onChange={(e) => {
+                  handleChange('longitude', parseFloat(e.target.value));
+                }}
+                placeholder="Enter longitude"
+                min={-180}
+                max={180}
+              />
+            </label>
+          </div>
+
+            {editableLayout.latitude && editableLayout.longitude ? (
+              <MapContainer
+                center={[editableLayout.latitude, editableLayout.longitude]}
+                zoom={13}
+                style={{ height: '100%', width: '100%'}}
+                scrollWheelZoom={true}
+              >
+                <TileLayer
+                  url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                  attribution='Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+                />
+                <Marker position={[editableLayout.latitude, editableLayout.longitude]}>
+                  <Popup>
+                    Position: {editableLayout.latitude.toFixed(5)}, {editableLayout.longitude.toFixed(5)}
+                  </Popup>
+                </Marker>
+              </MapContainer>
+            ) : (
+              <p style={{ color: 'gray', textAlign: 'center', paddingTop: '1rem' }}>
+                Please enter valid latitude and longitude to display the map.
+              </p>
+            )}
         </div>
+
       </div>
 
       {/* Plots Table */}

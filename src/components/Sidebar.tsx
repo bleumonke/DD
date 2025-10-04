@@ -4,6 +4,7 @@ import { PiSidebarSimpleLight } from 'react-icons/pi';
 import { LuUserCog, LuUser, LuLogOut } from 'react-icons/lu';
 import { SlMenu } from 'react-icons/sl';
 import './Sidebar.css';
+import logo from '../assets/logo.png';
 
 type SidebarLink = {
   key: string;
@@ -74,7 +75,15 @@ export default function Sidebar({ links, username }: SidebarProps) {
         {collapsed ? <SlMenu size={20} /> : <PiSidebarSimpleLight size={20} />}
       </div>
 
-      <div className="sidebar-content">{renderLinks(links)}</div>
+      { !collapsed && (
+        <div className="sidebar-header">
+          <img src={logo} alt="Logo" className="logo" />
+        </div>
+      )}
+
+      <div className="sidebar-content">
+        {renderLinks(links)}
+      </div>
 
       <div
         className="user-profile"
