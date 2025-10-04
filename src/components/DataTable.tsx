@@ -1,4 +1,4 @@
-import './Datatable.css'
+import './DataTable.css'
 import {
   useReactTable,
   getCoreRowModel,
