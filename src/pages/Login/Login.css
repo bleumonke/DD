@@ -10,6 +10,8 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  padding: 20px; /* added padding for smaller screens */
+  box-sizing: border-box;
 }
 
 /* Left side image */
@@ -21,7 +23,10 @@ body {
 }
 
 .login-image img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 /* Right side form */
@@ -34,6 +39,8 @@ body {
   border-radius: 8px;
   width: 80%;
   max-width: 900px;
+  min-width: 320px;
+  overflow: hidden;
 }
 
 /* The form section (right side) */
@@ -42,6 +49,8 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
+  padding: 20px 40px;
+  box-sizing: border-box;
 }
 
 /* Error always on top */
@@ -60,7 +69,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 40px;
+  padding: 0 0 20px 0;
 }
 
 /* Form row for phone and OTP inputs */
@@ -77,27 +86,31 @@ body {
   gap: 8px;
 }
 
-.phone-input {
-  flex: 1;
-  padding: 12px 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  text-align: left;
-}
-
+.phone-input,
 .otp-input {
   flex: 1;
   padding: 12px 14px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
+}
+
+.phone-input {
+  text-align: left;
+}
+
+.otp-input {
   text-align: center;
 }
 
 /* OTP Footer (resend + back) */
 .otp-footer {
   margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .resend-btn {
@@ -178,16 +191,81 @@ p {
 }
 
 /* Responsive for smaller screens */
-@media (max-width: 768px) {
-  .login-container {
+@media (max-width: 1024px) {
+  .login-box {
+    width: 90%;
+    height: auto;
     flex-direction: column;
   }
 
   .login-image {
-    height: 200px;
+    width: 100%;
+    height: 250px;
+    border-radius: 10px 10px 0 0;
+    box-shadow: none;
   }
 
   .login-form {
     padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+
+  .login-image {
+    height: 200px;
+    border-radius: 10px 10px 0 0;
+    box-shadow: none;
+  }
+
+  .login-box {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  .login-form {
+    padding: 20px 20px 40px 20px;
+  }
+
+  .input-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .phone-input,
+  .otp-input {
+    text-align: left;
+  }
+
+  .otp-footer {
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .back-btn {
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  .login-btn {
+    font-size: 14px;
+    padding: 10px;
   }
 }
