@@ -4,8 +4,9 @@ import { useNavigate } from 'react-router-dom'
 import './Login.css'
 
 const countryOptions = [
-  { value: '+91', label: '🇮🇳 +91' },
   { value: '+1', label: '🇺🇸 +1' },
+  { value: '+91', label: '🇮🇳 +91' },
+  { value: '+44', label: '🇬🇧 +44' },
 ]
 
 export default function Login() {
@@ -59,7 +60,7 @@ export default function Login() {
   const handleVerifyOtp = () => {
     const rawOtp = otp.replace(/\D/g, '')
     if (rawOtp === '123456') {
-      navigate('/')
+      navigate('/layouts')
     } else {
       setError('Invalid OTP. Please try again.')
     }
