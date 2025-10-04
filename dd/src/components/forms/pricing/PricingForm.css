@@ -1,0 +1,152 @@
+.pricing-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0 1rem;
+  margin: 0;
+}
+
+.pricing-form h2 {
+  font-size: small;
+  font-weight: 600;
+}
+
+.form-header {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 1rem;
+  padding: 0 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-card {
+  position: relative;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.form-card h3 {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  transform: translateY(-90%);
+  background-color: white;
+  padding: 0.75rem;
+  font-size: small;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  border-radius: 999px;
+  gap: 0.5rem;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+.section-icon {
+  font-size: small;
+}
+
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .form-grid {
+    gap: 1rem;
+  }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field label {
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+  font-size: small;
+}
+
+.form-field input {
+  padding: 0.65rem 0.75rem;
+  font-size: small;
+  border: 1px solid #dcdfe3;
+  border-radius: 6px;
+  background-color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.form-field input:focus {
+  border-color: #1565c0 !important;
+  box-shadow: 0 0 0 2px #1565c0 !important;
+  outline: none;
+}
+
+.form-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.65rem 1.25rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn.save {
+  background-color: black;
+  color: #fff;
+}
+
+.btn.save:hover {
+  background-color: #1565c0;
+}
+
+.btn.cancel {
+  background-color: #f1f1f1;
+  color: #555;
+}
+
+.btn.cancel:hover {
+  background-color: #e0e0e0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .pricing-form {
+    padding: 0 0.75rem;
+  }
+
+  .form-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+.react-select__control {
+  border-radius: 6px;
+  border: 1px solid #dcdfe3;
+  background-color: #ffffff;
+  font-size: small;
+  transition: all 0.2s ease;
+  font-weight: normal;
+}
+
+.react-select__menu {
+  font-size: small;
+  border-radius: 6px;
+}

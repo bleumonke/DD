@@ -1,0 +1,195 @@
+.layout-details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+/* Header */
+.layout-details-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.layout-details-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.layout-details-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: black;
+}
+
+.layout-details-id {
+  font-size: 0.85rem;
+  font-weight: lighter;
+  color: gray;
+}
+
+/* Stats section */
+.layout-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+/* Form Section */
+.layout-details-form-container {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem 2rem;
+}
+
+/* Left (Form) Column */
+.layout-details-form-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: whitesmoke;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+/* Right (Map or Preview) Column */
+.layout-details-form-right {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  background-color: #fafafa;
+  color: gray;
+  padding: 1rem;
+}
+
+/* Form Group */
+.layout-details-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.layout-details-form-group label {
+  font-size: small;
+  font-weight: 500;
+  color: gray;
+}
+
+.layout-details-form-group .value {
+  font-size:small;
+  font-weight: 600;
+  color: black;
+}
+
+.layout-details-form-group input,
+.layout-details-form-group .react-select__control {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  font-size: small;
+  box-sizing: border-box;
+}
+
+/* Remove wrapper gap for Select */
+.layout-details-form-group .react-select__control {
+  min-height: 38px;
+  background-color: white;
+}
+
+/* Dropdown styling */
+.react-select__menu {
+  font-size: 0.9rem;
+  z-index: 5;
+}
+
+/* Tables */
+.price-table-container,
+.plots-table-container {
+  padding: 1rem 2rem;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  margin: 0 2rem;
+}
+
+.price-table-title,
+.plots-table-title {
+  font-size: medium;
+  font-weight: 600;
+  color: black;
+  margin-bottom: 0.5rem;
+}
+
+.price-table-content,
+.plots-table-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Buttons */
+.layout-save-button {
+  width: auto;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: var(--hover-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.add-plot-button {
+  width: 120px;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: var(--hover-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-size: small;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+  gap: 0.5rem;
+}
+
+.add-price-button {
+  width: 130px;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: var(--hover-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-size: small;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+  gap: 0.5rem;
+} 
+
+
+.add-plot-button:hover,
+.add-price-button:hover,
+.layout-save-button:hover {
+  background-color: var(--secondary-color);
+}

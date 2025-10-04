@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #000000;         /* Black */
+  --secondary-color: #333333;       /* Dark gray */
+  --background-color: #ffffff;      /* White */
+  --text-color: #000000;            /* Black */
+  --hover-color: #f0f0f0;           /* Light gray hover */
+  --subheading-color: #666666;      /* Gray subheadings */
+  --border-color: #cccccc;          /* Light gray border */
+  --box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.06);
+  --active-color: black;          /* Dark gray for active elements */
+  --active-text-color: #ffffff;     /* White text for active elements */
+
+  --table-header-bg: black;
+  --table-header-text: white;
+  --table-text: black;
+  --table-row-even: #ffffff;
+  --table-row-odd: #f9f9f9;
+  --table-row-hover: #eaeaea;
+  --table-border: #dddddd;
+}
+
+[data-theme="dark"] {
+  --primary-color: #ffffff;         /* White */
+  --secondary-color: #cccccc;       /* Light gray */
+  --background-color: #000000;      /* Pure black */
+  --text-color: #ffffff;            /* White */
+  --hover-color: #222222;           /* Dark gray for hover */
+  --subheading-color: #bbbbbb;      /* Gray subheadings */
+  --border-color: #444444;          /* Gray border */
+  --box-shadow: 0 -2px 8px rgba(255, 255, 255, 0.1);
+  
+  --table-header-bg: white;       /* Near-black */
+  --table-header-text: black;     /* White */
+  --table-text: white;            /* White */
+  --table-row-even: #1a1a1a;        /* Dark gray */
+  --table-row-odd: #0f0f0f;         /* Slightly darker */
+  --table-row-hover: #222222;       /* Hover state */
+  --table-border: #333333;          /* Table border */
+}
+
+/* 🔵 Base Pill Style (used for all status pills) */
+.status-pill,
+.plot-status {
+  display: inline-block;
+  padding: 0.25rem 0.75rem; /* consistent padding */
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+  text-transform: capitalize;
+  white-space: nowrap;
+  border: 1px solid transparent; /* default border for pill layout */
+}
+
+/* ✅ Price Status Pills */
+.status-pill.unexpired {
+  background-color: #2e7d32;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.status-pill.expired {
+  background-color: #c62828;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.plot-status.status-available {
+  background-color: royalblue;
+  color: white;
+}
+
+.plot-status.status-sold {
+  background-color: forestgreen;
+  color: white;
+}
+
+.plot-status.status-registered {
+  background-color: darkslategray;
+  color: white;
+}
+
+.plot-status.status-default {
+  background-color: #e5e7eb;
+  color: #374151;
+}

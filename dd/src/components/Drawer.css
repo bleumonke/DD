@@ -1,0 +1,81 @@
+/* Glassy drawer backdrop */
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.2); /* Frosted white */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 1000;
+  animation: fadeIn 0.3s forwards;
+}
+
+.drawer-overlay.closing {
+  animation: fadeOut 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.drawer {
+  height: auto;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 24px;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.15);
+  overflow-y: auto; /* Scroll vertically if needed */
+  position: relative;
+  transform: translateX(100%);
+  animation: slideIn 0.3s forwards;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Exit animation */
+.drawer.closing {
+  animation: slideOut 0.3s forwards;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slideOut {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+
+/* Sizes */
+.drawer.sm { width: 280px; }
+.drawer.md { width: 360px; }
+.drawer.lg { width: 480px; }
+
+.drawer-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+}
+
+.drawer-close:hover {
+  color: #000;
+}
+
+.drawer-content {
+  margin-top: 3rem;
+}
+
+.drawer-row {
+  margin-bottom: 16px;
+}
