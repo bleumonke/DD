@@ -3,7 +3,7 @@ import { NAVIGATION_LINKS } from './data'
 import { Sidebar } from './components/export'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
-import Dashboard from './pages/Dashboard'
+// import Dashboard from './pages/Dashboard'
 import Customers from './pages/Customers'
 import Layouts from './pages/Layouts'
 import LayoutDetails from './pages/LayoutDetails/LayoutDetails'

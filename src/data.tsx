@@ -1,5 +1,5 @@
 import { IoPricetagOutline } from "react-icons/io5";
-import { SlGrid } from "react-icons/sl";
+// import { SlGrid } from "react-icons/sl";
 import { PiUsers } from "react-icons/pi";
 import { IoMapSharp } from "react-icons/io5";
 import { TbMoneybag } from "react-icons/tb";
